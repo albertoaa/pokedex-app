@@ -5,15 +5,19 @@ import { PokemonItem } from '../components/PokemonItem';
 
 export const Home = () => {
   const [allPokemons, setAllPokemons] = useState<types.Pokemon[]>([]);
+  const [previous, setPrevious] = useState<string>('');
+  const [next, setNext] = useState<string>('');
 
-  const fetchAllPokemons = async () => {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=18');
+  const fetchAllPokemons = async (url: string) => {
+    const response = await fetch(url);
     const data = await response.json();
+    setNext(data.next);
+    setPrevious(data.previous);
     setAllPokemons(data.results);
   };
 
   useEffect(() => {
-    fetchAllPokemons();
+    fetchAllPokemons('https://pokeapi.co/api/v2/pokemon?limit=18');
   }, []);
 
   return (
@@ -35,6 +39,22 @@ export const Home = () => {
         {allPokemons.map((pokemon, index) => (
           <PokemonItem key={index} pokemon={pokemon} />
         ))}
+      </section>
+      <section className="pagination m-auto flex w-1/4 justify-evenly">
+        <button
+          className="mx-4 w-20 bg-sky-800 py-2 text-white"
+          onClick={() => fetchAllPokemons(previous)}
+          disabled={previous === null}
+        >
+          Previous
+        </button>
+        <button
+          className="mx-4 w-20 bg-sky-800 py-2 text-white"
+          onClick={() => fetchAllPokemons(next)}
+          disabled={next === null}
+        >
+          Next
+        </button>
       </section>
     </div>
   );
