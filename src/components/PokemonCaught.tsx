@@ -51,11 +51,6 @@ export const PokemonCaught: React.FC<PokemonCaughtProps> = ({ pokemon }) => {
                 ))}
               </p>
             </div>
-            <div className="ml-2 w-4/5">
-              <h4 className="text-md text-start font-semibold underline">
-                Moves
-              </h4>
-            </div>
           </div>
         )}
       </div>
