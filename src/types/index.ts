@@ -1,1 +1,1 @@
-export type { Pokemon } from './pokemonTypes';
+export type { Pokemon, CaughtPokemon } from './pokemonTypes';

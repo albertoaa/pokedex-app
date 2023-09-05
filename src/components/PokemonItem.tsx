@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Pokemon } from '../types';
+import * as types from '../types';
 
 interface PokemonItemProps {
-  pokemon: Pokemon;
+  pokemon: types.Pokemon;
+  handleCatchPokemon: (pokemon: types.CaughtPokemon) => void;
 }
 
-export const PokemonItem: React.FC<PokemonItemProps> = ({ pokemon }) => {
+export const PokemonItem: React.FC<PokemonItemProps> = ({
+  pokemon,
+  handleCatchPokemon,
+}) => {
   const [pokemonPicture, setPokemonPicture] = useState<string>('');
   const [pokemonAbilities, setPokemonAbilities] = useState<string[]>([]);
   const [pokemonTypes, setPokemonTypes] = useState<string[]>([]);
@@ -45,6 +49,17 @@ export const PokemonItem: React.FC<PokemonItemProps> = ({ pokemon }) => {
     return randomMoves;
   };
 
+  const caughtPokemons = () => {
+    const newPokemon: CaughtPokemon = {
+      name: pokemon.name,
+      picture: pokemonPicture,
+      type: pokemonTypes,
+      abbilities: pokemonAbilities,
+    };
+
+    handleCatchPokemon(newPokemon);
+  };
+
   return (
     <div className="w-70 m-4 h-80 rounded-md border-2 border-black bg-slate-300">
       <div className="info h-3/4 flex-col items-center justify-center justify-self-center">
@@ -74,7 +89,7 @@ export const PokemonItem: React.FC<PokemonItemProps> = ({ pokemon }) => {
             </div>
             <div className="ml-2 w-4/5">
               <h4 className="text-md text-start font-semibold underline">
-                Types
+                Type
               </h4>
               <p className="ml-2 list-none">
                 {pokemonTypes.map((type, index) => (
@@ -110,7 +125,10 @@ export const PokemonItem: React.FC<PokemonItemProps> = ({ pokemon }) => {
         >
           {isFlipped ? 'Back' : 'Info'}
         </button>
-        <button className="mx-1 w-16 bg-sky-800 px-2 py-2 text-white">
+        <button
+          className="mx-1 w-16 bg-sky-800 px-2 py-2 text-white"
+          onClick={caughtPokemons}
+        >
           Catch
         </button>
       </div>
