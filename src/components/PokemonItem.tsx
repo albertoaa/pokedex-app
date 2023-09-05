@@ -13,18 +13,24 @@ export const PokemonItem: React.FC<PokemonItemProps> = ({ pokemon }) => {
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchPokemonPicture = async () => {
-      const response = await fetch(pokemon.url);
-      const data = await response.json();
-      // console.log(data);
-      setPokemonPicture(data.sprites.front_default);
-      setPokemonAbilities(data.abilities);
-      setPokemonTypes(data.types);
-      setPokemonMoves(data.moves);
+    const fetchPokemonData = async () => {
+      if (!pokemon.url) {
+        setPokemonPicture(pokemon.sprites.front_default);
+        setPokemonAbilities(pokemon.abilities);
+        setPokemonTypes(pokemon.types);
+        setPokemonMoves(pokemon.moves);
+      } else {
+        const response = await fetch(pokemon.url);
+        const data = await response.json();
+        setPokemonPicture(data.sprites.front_default);
+        setPokemonAbilities(data.abilities);
+        setPokemonTypes(data.types);
+        setPokemonMoves(data.moves);
+      }
     };
 
-    fetchPokemonPicture();
-  }, [pokemon.url]);
+    fetchPokemonData();
+  }, [pokemon]);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
