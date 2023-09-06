@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as types from '../types';
 
 interface PokemonCaughtProps {
@@ -32,11 +32,13 @@ export const PokemonCaught: React.FC<PokemonCaughtProps> = ({ pokemon }) => {
                 Abilities
               </h4>
               <p className="ml-2 list-none">
-                {pokemon.abbilities.map((ability, index) => (
-                  <span key={index} className="pr-2">
-                    {ability.ability.name}
-                  </span>
-                ))}
+                {pokemon.abilities.map(
+                  (ability: types.PokemonAbility, index) => (
+                    <span key={index} className="pr-2">
+                      {ability.ability.name}
+                    </span>
+                  ),
+                )}
               </p>
             </div>
             <div className="ml-2 w-4/5">
@@ -44,7 +46,7 @@ export const PokemonCaught: React.FC<PokemonCaughtProps> = ({ pokemon }) => {
                 Type
               </h4>
               <p className="ml-2 list-none">
-                {pokemon.type.map((type, index) => (
+                {pokemon.type.map((type: types.PokemonType, index) => (
                   <span className="pr-2" key={index}>
                     {type.type.name}
                   </span>

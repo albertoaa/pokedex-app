@@ -11,9 +11,11 @@ export const PokemonItem: React.FC<PokemonItemProps> = ({
   handleCatchPokemon,
 }) => {
   const [pokemonPicture, setPokemonPicture] = useState<string>('');
-  const [pokemonAbilities, setPokemonAbilities] = useState<string[]>([]);
-  const [pokemonTypes, setPokemonTypes] = useState<string[]>([]);
-  const [pokemonMoves, setPokemonMoves] = useState<string[]>([]);
+  const [pokemonAbilities, setPokemonAbilities] = useState<
+    types.PokemonAbility[]
+  >([]);
+  const [pokemonTypes, setPokemonTypes] = useState<types.PokemonType[]>([]);
+  const [pokemonMoves, setPokemonMoves] = useState<types.PokemonMove[]>([]);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
   useEffect(() => {
@@ -40,7 +42,10 @@ export const PokemonItem: React.FC<PokemonItemProps> = ({
     setIsFlipped(!isFlipped);
   };
 
-  const getRandomMoves = (moves: string[], qty: number): string[] => {
+  const getRandomMoves = (
+    moves: types.PokemonMove[],
+    qty: number,
+  ): types.PokemonMove[] => {
     const randomMoves = [];
     for (let i = 0; i < qty; i++) {
       const randomIndex = Math.floor(Math.random() * moves.length);
@@ -50,11 +55,11 @@ export const PokemonItem: React.FC<PokemonItemProps> = ({
   };
 
   const caughtPokemons = () => {
-    const newPokemon: CaughtPokemon = {
+    const newPokemon: types.CaughtPokemon = {
       name: pokemon.name,
       picture: pokemonPicture,
       type: pokemonTypes,
-      abbilities: pokemonAbilities,
+      abilities: pokemonAbilities,
     };
 
     handleCatchPokemon(newPokemon);
