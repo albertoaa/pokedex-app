@@ -1,27 +1,25 @@
-# React + TypeScript + Vite
+# Podedex APP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple app to list available pokemons and show their details. The app follow these guidelines: <https://www.notion.so/trustribbon/Pokedex-App-36e890fe6973470cb91ee04fcdaae47c>
 
-Currently, two official plugins are available:
+Functionally the app has a deck of Pokemon Cards that you can view the details of each one by
+clicking on Info button and catch them using the Catch button. The app also has a search bar to
+filter the Pokemon Cards by name.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Once some Pokemons are caught you have a button on the top right corner to view them. Every time a Pokemon is caught a it's saved in the local storage so that the caught Pokemons are not lost when the page is refreshed.'
 
-## Expanding the ESLint configuration
+## Running the app
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The app it's built with React and TypeScript using Vite as a bundler. In order to run the app:
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repo
+2. Run `npm install`
+3. Run `npm run dev`
+4. Open <http://localhost:5173/> in your browser
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Pending improvements
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Add unit tests
+- Improving types definition for API returned data
+- Separate into independent components some of the logic in the HomePage component
+- Add navigation to the Caught Pokemon page
