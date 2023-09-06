@@ -17,6 +17,8 @@ The app it's built with React and TypeScript using Vite as a bundler. In order t
 3. Run `npm run dev`
 4. Open <http://localhost:5173/> in your browser
 
+Alternatively you can check the app live at: <https://albertoaa.github.io/pokedex-app/>
+
 ## Pending improvements
 
 - Add unit tests
