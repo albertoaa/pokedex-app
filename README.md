@@ -23,3 +23,4 @@ The app it's built with React and TypeScript using Vite as a bundler. In order t
 - Improving types definition for API returned data
 - Separate into independent components some of the logic in the HomePage component
 - Add navigation to the Caught Pokemon page
+- Add environment variables for the API URL
